@@ -1,6 +1,8 @@
 import pytest
 import requests
 
+from utils.text_utils import check_is_200
+
 
 @pytest.fixture
 def status_code_ok():
@@ -41,7 +43,7 @@ def test_ping_post__invalid_params__400_response(name, g_number):
         "correct data - 200"
     ]
 )
-def test_ping_post__invalid_params__400_response(body, code, expected_response, status_code_ok, test_user_token):
+def test_ping_post__invalid_params__400_response2(body, code, expected_response, status_code_ok, test_user_token):
     response = requests.post(
         url="http://31.178.216.240:8855/api/v1/ping",
         json=body,
