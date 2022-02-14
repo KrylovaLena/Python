@@ -35,3 +35,24 @@ def test_user_token(test_user):
     )
 
     yield response.json()["token_web"]
+
+
+@pytest.fixture
+def user_factory():
+    users = []
+
+    def factory(user_data):
+        requests.post(
+            url="http://31.178.216.240:8855/api/v1/sign_up",
+            json=user_data
+        )
+        users.append(user_data)
+        return user_data
+
+    yield factory
+
+    for user_data in users:
+        requests.post(
+            url="http://31.178.216.240:8855/api/v1/debug/remove_user",
+            json={"username": user_data["username"]}
+        )
