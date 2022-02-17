@@ -1,8 +1,6 @@
 import pytest
 import requests
 
-from utils.text_utils import check_is_200
-
 
 @pytest.fixture
 def status_code_ok():
